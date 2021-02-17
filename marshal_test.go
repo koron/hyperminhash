@@ -19,6 +19,9 @@ func TestMarshal(t *testing.T) {
 	if err := sk2.UnmarshalBinary(b); err != nil {
 		t.Fatalf("unmarshal failed: %s", err)
 	}
-	t.Logf("sk.Cardinality=%d", sk.Cardinality())
-	t.Logf("sk2.Cardinality=%d", sk2.Cardinality())
+	exp := sk.Cardinality()
+	act := sk2.Cardinality()
+	if act != exp {
+		t.Errorf("cardinalities unmatch: want=%d got=%d", exp, act)
+	}
 }
